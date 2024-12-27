@@ -7,6 +7,7 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { FormData } from "@/lib/types";
 import { formSchema } from "@/lib/schema";
+import { Stepper } from "@/components/ui/stepper";
 import ContactForm from "./steps/contact-form";
 import AddressForm from "./steps/address-form";
 import AdditionalForm from "./steps/additional-form";
@@ -87,12 +88,11 @@ const MultiStepForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
         <div className="space-y-6">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold">{steps[currentStep].title}</h2>
-            <p className="text-sm text-gray-500">
-              Step {currentStep + 1} of {steps.length}
-            </p>
-          </div>
+          <Stepper
+            steps={steps.map(step => step.title)}
+            currentStep={currentStep}
+            className="mb-8"
+          />
 
           <CurrentStepComponent />
         </div>
