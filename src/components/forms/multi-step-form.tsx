@@ -32,7 +32,7 @@ const steps: { title: string; component: React.FC; fields: (keyof FormData)[] }[
   { 
     title: "Confirmation", 
     component: ConfirmationForm,
-    fields: []
+    fields: ['name', 'email', 'phoneNumber', 'streetAddress', 'city', 'state', 'zipCode', 'additionalInfo']
   },
 ];
 
@@ -80,13 +80,13 @@ const MultiStepForm = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 0));
   };
 
-  const handleSubmit = (data: FormData) => {
+  const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
   };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+      <form className="space-y-8" method="post">
         <div className="space-y-6">
           <Stepper
             steps={steps.map(step => step.title)}
@@ -107,7 +107,7 @@ const MultiStepForm = () => {
             Back
           </Button>
           {currentStep === steps.length - 1 ? (
-            <Button type="submit">Submit</Button>
+            <Button type="button" onClick={form.handleSubmit(onSubmit)}>Submit</Button>
           ) : (
             <Button type="button" onClick={handleNext}>
               Next
