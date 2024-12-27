@@ -50,7 +50,7 @@ const ConfirmationForm = () => {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="flex flex-col gap-6">
         {sections.map((section) => (
           <div
             key={section.title}
@@ -75,7 +75,7 @@ const ConfirmationForm = () => {
                     {field.label}:
                   </span>
                   <span className={cn(
-                    "block text-gray-600 dark:text-gray-400",
+                    "block text-gray-600 dark:text-gray-400 break-words",
                     field.fullWidth && "mt-2"
                   )}>
                     {field.value}
