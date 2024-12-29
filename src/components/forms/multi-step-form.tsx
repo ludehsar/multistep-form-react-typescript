@@ -8,32 +8,38 @@ import { Button } from "@/components/ui/button";
 import { FormData } from "@/lib/types";
 import { formSchema } from "@/lib/schema";
 import { Stepper } from "@/components/ui/stepper";
-import ContactForm from "./steps/contact-form";
-import AddressForm from "./steps/address-form";
-import AdditionalForm from "./steps/additional-form";
+import IdentifyingInfoForm from "./steps/identifying-info-form";
+import DescriptionForm from "./steps/description-form";
+import FinancialForm from "./steps/financial-form";
+import ImpactForm from "./steps/impact-form";
 import ConfirmationForm from "./steps/confirmation-form";
 
 const steps: { title: string; component: React.FC; fields: (keyof FormData)[] }[] = [
   { 
-    title: "Contact Information", 
-    component: ContactForm,
-    fields: ['name', 'email', 'phoneNumber']
+    title: "Identifying Information", 
+    component: IdentifyingInfoForm,
+    fields: ['name', 'jobTitle', 'email', 'requestor']
   },
   { 
-    title: "Address", 
-    component: AddressForm,
-    fields: ['streetAddress', 'city', 'state', 'zipCode']
+    title: "Description", 
+    component: DescriptionForm,
+    fields: ['theater', 'siteSpecific', 'implementationDate', 'fiscalYear', 'changeTo', 'changeType', 'description']
   },
   { 
-    title: "Additional Information", 
-    component: AdditionalForm,
-    fields: ['additionalInfo']
+    title: "Financial", 
+    component: FinancialForm,
+    fields: ['expenseType', 'managementFee', 'managementFeeAnnualized', 'totalNonControllableFYImpact', 'totalNonControllableAnnualized']
   },
   { 
-    title: "Confirmation", 
+    title: "Impact", 
+    component: ImpactForm,
+    fields: ['isHeadcountChange', 'headcountChangeType', 'employeesInvolved', 'kpiSlaImpact', 'kpiSlaImpactDescription', 'isLawChange', 'lawChangeDescription', 'hasProviderPersonnel', 'hasEmployees', 'file']
+  },
+  {
+    title: "Confirmation",
     component: ConfirmationForm,
-    fields: ['name', 'email', 'phoneNumber', 'streetAddress', 'city', 'state', 'zipCode', 'additionalInfo']
-  },
+    fields: []
+  }
 ];
 
 const MultiStepForm = () => {
@@ -45,13 +51,31 @@ const MultiStepForm = () => {
     reValidateMode: "onSubmit",
     defaultValues: {
       name: "",
+      jobTitle: "",
       email: "",
-      phoneNumber: "",
-      streetAddress: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      additionalInfo: "",
+      requestor: "",
+      theater: "",
+      siteSpecific: "",
+      implementationDate: new Date(),
+      fiscalYear: "",
+      changeTo: "",
+      changeType: "",
+      description: "",
+      expenseType: "",
+      managementFee: "",
+      managementFeeAnnualized: "",
+      totalNonControllableFYImpact: "",
+      totalNonControllableAnnualized: "",
+      isHeadcountChange: "",
+      headcountChangeType: "",
+      employeesInvolved: "",
+      kpiSlaImpact: "",
+      kpiSlaImpactDescription: "",
+      isLawChange: "",
+      lawChangeDescription: "",
+      hasProviderPersonnel: "",
+      hasEmployees: "",
+      file: ""
     },
   });
 
