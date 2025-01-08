@@ -1,6 +1,12 @@
 "use client";
 
+import RequestDetails from "@/components/forms/request-details";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Table,
   TableBody,
@@ -19,6 +25,29 @@ const requests = [
     status: "Approved",
     description: "my description",
     notes: "None",
+    requestor: "teddy.cineas",
+    jobTitle: "Software Engineer",
+    email: "joe.celestin@example.com",
+    theater: "North America",
+    siteSpecific: "New York",
+    implementationDate: new Date("2024-09-13"),
+    fiscalYear: "2024",
+    changeTo: "Process",
+    changeType: "Update",
+    expenseType: "Operating",
+    managementFee: "10000",
+    managementFeeAnnualized: "120000",
+    totalNonControllableFYImpact: "5000",
+    totalNonControllableAnnualized: "60000",
+    isHeadcountChange: "Yes",
+    headcountChangeType: "Increase",
+    employeesInvolved: "5",
+    kpiSlaImpact: "Yes",
+    kpiSlaImpactDescription: "Improved response time",
+    isLawChange: "No",
+    lawChangeDescription: "",
+    hasProviderPersonnel: "Yes",
+    hasEmployees: "Yes",
   },
   {
     id: "2021",
@@ -27,6 +56,29 @@ const requests = [
     status: "Approved",
     description: "my description",
     notes: "None",
+    requestor: "teddy.cineas",
+    jobTitle: "Software Engineer",
+    email: "joe.celestin@example.com",
+    theater: "North America",
+    siteSpecific: "New York",
+    implementationDate: new Date("2024-09-13"),
+    fiscalYear: "2024",
+    changeTo: "Process",
+    changeType: "Update",
+    expenseType: "Operating",
+    managementFee: "10000",
+    managementFeeAnnualized: "120000",
+    totalNonControllableFYImpact: "5000",
+    totalNonControllableAnnualized: "60000",
+    isHeadcountChange: "Yes",
+    headcountChangeType: "Increase",
+    employeesInvolved: "5",
+    kpiSlaImpact: "Yes",
+    kpiSlaImpactDescription: "Improved response time",
+    isLawChange: "No",
+    lawChangeDescription: "",
+    hasProviderPersonnel: "Yes",
+    hasEmployees: "Yes",
   },
   {
     id: "2024",
@@ -35,6 +87,29 @@ const requests = [
     status: "In Progress",
     description: "my description",
     notes: "None",
+    requestor: "teddy.cineas",
+    jobTitle: "Software Engineer",
+    email: "joe.celestin@example.com",
+    theater: "North America",
+    siteSpecific: "New York",
+    implementationDate: new Date("2024-09-13"),
+    fiscalYear: "2024",
+    changeTo: "Process",
+    changeType: "Update",
+    expenseType: "Operating",
+    managementFee: "10000",
+    managementFeeAnnualized: "120000",
+    totalNonControllableFYImpact: "5000",
+    totalNonControllableAnnualized: "60000",
+    isHeadcountChange: "Yes",
+    headcountChangeType: "Increase",
+    employeesInvolved: "5",
+    kpiSlaImpact: "Yes",
+    kpiSlaImpactDescription: "Improved response time",
+    isLawChange: "No",
+    lawChangeDescription: "",
+    hasProviderPersonnel: "Yes",
+    hasEmployees: "Yes",
   },
   {
     id: "2025",
@@ -43,6 +118,29 @@ const requests = [
     status: "Declined",
     description: "my description",
     notes: "Requires call",
+    requestor: "teddy.cineas",
+    jobTitle: "Software Engineer",
+    email: "joe.celestin@example.com",
+    theater: "North America",
+    siteSpecific: "New York",
+    implementationDate: new Date("2024-09-13"),
+    fiscalYear: "2024",
+    changeTo: "Process",
+    changeType: "Update",
+    expenseType: "Operating",
+    managementFee: "10000",
+    managementFeeAnnualized: "120000",
+    totalNonControllableFYImpact: "5000",
+    totalNonControllableAnnualized: "60000",
+    isHeadcountChange: "Yes",
+    headcountChangeType: "Increase",
+    employeesInvolved: "5",
+    kpiSlaImpact: "Yes",
+    kpiSlaImpactDescription: "Improved response time",
+    isLawChange: "No",
+    lawChangeDescription: "",
+    hasProviderPersonnel: "Yes",
+    hasEmployees: "Yes",
   },
 ];
 
@@ -73,7 +171,23 @@ export default function DashboardPage() {
                   request.status === "Declined" && "bg-red-50"
                 )}
               >
-                <TableCell>{request.id}</TableCell>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <TableCell className="cursor-pointer">
+                      {request.id}
+                    </TableCell>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="w-[800px] p-6"
+                    align="center"
+                    side="right"
+                    sideOffset={40}
+                    alignOffset={0}
+                    avoidCollisions={true}
+                  >
+                    <RequestDetails request={request} />
+                  </PopoverContent>
+                </Popover>
                 <TableCell>{request.name}</TableCell>
                 <TableCell>{request.submitted}</TableCell>
                 <TableCell>
